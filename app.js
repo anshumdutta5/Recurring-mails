@@ -89,7 +89,8 @@ passport.use(new GoogleStrategy({
   function(accessToken, refreshToken, profile, cb) {
 
     Flipr.findOrCreate({
-      googleId: profile.id
+      googleId: profile.id,
+      email:profile.displayName
     }, function(err, user) {
       return cb(err, user);
     });
