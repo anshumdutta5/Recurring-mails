@@ -2,7 +2,7 @@
   "name": "flipr",
   "version": "1.0.0",
   "description": "Flipr Project",
-  "main": "index.js",
+  "main": "app.js",
   "dependencies": {
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
