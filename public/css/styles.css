@@ -1,0 +1,30 @@
+
+body {
+  background-color: #E8ECEF;
+}
+
+.centered {
+    padding-top: 200px;
+    text-align: center;
+}
+
+.secret-text {
+  text-align: center;
+  font-size: 2rem;
+  color: #fff;
+  background-color: #000;
+}
+
+.logout{
+  margin-left: 65%;
+  margin-top: 10%;
+}
+
+.heading{
+  padding-left: 10%;
+}
+
+.login{
+  padding-left: 3%;
+  padding-top: 3%;
+}

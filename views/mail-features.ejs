@@ -1,0 +1,128 @@
+<%- include('partials/header') %>
+<div class="container row container  ">
+  <div class="col-sm-8">
+
+    <h1 class="heading"><i class="fab fa-android fa-2x">  </i> FLIPR</h1>
+  </div>
+  <div class="col-sm-4">
+
+    <a class="btn btn-light btn-lg logout " href="/logout" role="button">Log Out</a>
+  </div>
+</div>
+<div  class="container row container mt-5 ">
+  <div class="col-sm-8">
+    <h5>Enter credentials for mails to be sent</h5>
+  </div>
+  <div class="col-sm-4">
+    <h5>Mails Scheduled for future (You can delete one job at a time by checking the box)</h5>
+
+  </div>
+</div>
+
+<div class="row container ">
+
+
+  <div class="col-sm-8">
+    <div class="card">
+      <div class="card-body">
+
+        <!-- Makes POST request to /login route -->
+        <form action="/mail-features" method="POST">
+          <div class="form-group">
+            <label for="email">To</label>
+            <input type="text" class="form-control" name="email" placeholder="email1,email2,email3,...">
+          </div>
+          <div class="form-group">
+            <label for="email">CC</label>
+            <input type="text" class="form-control" name="email_cc" placeholder="email1,email2,email3,...">
+          </div>
+          <div class="form-group">
+            <label for="email">Subject</label>
+            <input type="text" class="form-control" name="subject">
+          </div>
+          <div class="form-group">
+            <label for="email">Schedule</label>
+            <select class="form-control form-input " name="schedule" onchange="yesnoCheck(this);">
+              <option selected value="none">Instantaneously</option>
+              <option value="recurring">Recurring</option>
+              <option value="weekly">Weekly</option>
+              <option value="monthly">Monthly</option>
+              <option value="yearly">Yearly</option>
+            </select>
+          </div>
+
+          <div id="sec" class="form-group" style="display: none;">
+            <label for="formGroupExampleInput">Recur after how many second?</label>
+            <input type="text" class="form-control " name="sec">
+          </div>
+          <div id="time_m" class="form-group" style="display: none;">
+            <label for="formGroupExampleInput">Minutes time (0-59)</label>
+            <input type="text" class="form-control " name="time_m">
+          </div>
+          <div id="time_h" class="form-group" style="display: none;">
+            <label for="formGroupExampleInput">Hour time (0-23)</label>
+            <input type="text" class="form-control " name="time_h">
+          </div>
+          <div id="day_m" class="form-group" style="display: none;">
+            <label for="formGroupExampleInput">Which Day of month (1-31)</label>
+            <input type="text" class="form-control " name="day_m">
+          </div>
+          <div id="month" class="form-group" style="display: none;">
+            <label for="formGroupExampleInput">Which month? (1-12)</label>
+            <input type="text" class="form-control " name="month">
+          </div>
+          <div id="day_w" class="form-group" style="display: none;">
+            <label for="formGroupExampleInput">Which day of week? (SUN-SAT)</label>
+            <input type="text" class="form-control " name="day_w">
+          </div>
+
+
+          <div class="form-group">
+            <label for="email">Mail Body</label>
+            <textarea class="form-control" name="mail_body" rows="8" cols="80"></textarea>
+            <!-- <input type="text" class="form-control" name="subject" placeholder="email1,email2,email3,..."> -->
+          </div>
+          <button type="submit" class="btn btn-dark">Send Email</button>
+        </form>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="col-sm-4">
+    <form class="" action="/mail-features" method="POST">
+      <ul class="list-group">
+        <%  existing_jobs.forEach(function(job){ %>
+        <li class="list-group-item"> <input type="checkbox" name="delete_job" value=<%=job.name_job%>> <%= job.name%> , <%= job.subject%></li>
+        <%     }) %>
+        <button type="submit" class="btn btn-dark"> Delete Job</button>
+      </ul>
+
+    </form>
+
+  </div>
+
+</div>
+
+<div class="row container mt-5">
+
+  <div class="col-sm-4">
+<h5>History</h5>
+      <ul class="list-group">
+        <%  history_jobs.forEach(function(job){ %>
+        <li class="list-group-item"> <%= job.name%> , <%= job.subject%></li>
+        <%     }) %>
+      </ul>
+
+  </div>
+</div>
+<script type="text/javascript">
+  <% if(flag === 1){ %>
+    alert("Mail Sent !!!");
+  <% } %>
+</script>
+<script src="js/custom.js" charset="utf-8"></script>
+
+<%- include('partials/footer') %>
